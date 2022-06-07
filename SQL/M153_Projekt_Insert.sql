@@ -1,7 +1,7 @@
-USE m153_zoo;
+# USE m153_zoo;
 
 
-INSERT INTO enclosures (name)
+INSERT INTO Enclosures (name)
 VALUES
     ('Ape-Enclosure'),
     ('Giraffe-Enclosure'),
@@ -10,7 +10,7 @@ VALUES
     ('Crocodile-Enclosure'),
     ('Penguin-Enclosure');
 
-INSERT INTO animalgroup (fk_EnclosureId, Name)
+INSERT INTO AnimalGroup (fk_EnclosureId, Name)
 VALUES
 (1,'Apes'),
 (2,'Giraffes'),
@@ -19,19 +19,19 @@ VALUES
 (5,'Crocodiles'),
 (6,'Penguins');
 
-INSERT INTO animal (fk_AnimalGroupId, name, Birthday)
+INSERT INTO Animal (fk_AnimalGroupId, name, Size, Birthday)
 VALUES
-(1,'Coco',CURDATE()),
-(1,'Manfred',CURDATE()),
-(2,'Yolo',CURDATE()),
-(3,'Jojo', CURDATE()),
-(4,'Bubatz', CURDATE()),
-(5, 'Joko',CURDATE()),
-(6, 'Class', CURDATE()),
-(6, 'Peter', CURDATE());
+(1,'Coco', 0.85,CURDATE()),
+(1,'Manfred', 1.04,CURDATE()),
+(2,'Yolo', 5.47,CURDATE()),
+(3,'Jojo', 1.92, CURDATE()),
+(4,'Bubatz', 0.48, CURDATE()),
+(5, 'Joko', 3.75, CURDATE()),
+(6, 'Class', 1.49, CURDATE()),
+(6, 'Peter', 1.32, CURDATE());
 
 
-INSERT INTO feed (Feed_Name, description)
+INSERT INTO Feed (Feed_Name, description)
 VALUES
 ('Avocado', 'The avocado is a plant species from the laurel family. From a botanical point of view, the fruit is a berry and has historically been given many other names that are now rare, such as avocado pear, alligator pear or butter fruit.'),
 ('Grape','Grapes are the infructescences of the vines, especially those of the noble vine. The individual fruits of the infructescence are called grapes. Colloquially, a clear distinction is not always made between berries and grapes.'),
@@ -44,7 +44,7 @@ VALUES
 ('Crab','With around 6,800 species, the crabs – also known as real crabs or short-tailed crabs – are the largest infra-order of the order decapods. Most crab species live in the sea, but some also live in fresh water or on land.');
 
 
-INSERT INTO feeding (fk_AnimalGroupId, fk_FeedId, Amount, Feeding_Time)
+INSERT INTO Feeding (fk_AnimalGroupId, fk_FeedId, Amount, Feeding_Time)
 VALUES
 (1,1,50,'12:00:00'),
 (1,2,90,'18:00:00'),
@@ -57,7 +57,7 @@ VALUES
 (6,9,200,'11:00:00');
 
 
-INSERT INTO properties (AnimalId, Description)
+INSERT INTO Properties (AnimalId, Description)
 VALUES
 (1,'communicative'),
 (1,'playful'),
