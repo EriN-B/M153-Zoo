@@ -1,4 +1,4 @@
-# USE m153_zoo;
+USE m153_zoo;
 
 
 INSERT INTO Enclosures (name)

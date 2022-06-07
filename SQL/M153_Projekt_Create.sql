@@ -60,6 +60,15 @@ CREATE TRIGGER CheckBirthday
             END IF;
         END;
 
+CREATE TRIGGER RemoveAnimalGroupAndFeefing
+    AFTER DELETE ON Animal
+    FOR EACH ROW
+        BEGIN
+            IF (select count(AnimalId) from Animal where Animal.fk_AnimalGroupId = OLD.fk_AnimalGroupId) = 0 THEN
+                DELETE FROM Feeding WHERE Feeding.fk_AnimalGroupId = OLD.fk_AnimalGroupId;
+                DELETE FROM AnimalGroup WHERE AnimalGroup.AnimalGroupId = OLD.fk_AnimalGroupId;
+            END IF;
+END;
 
 
 
