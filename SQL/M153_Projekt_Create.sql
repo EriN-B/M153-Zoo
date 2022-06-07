@@ -70,5 +70,7 @@ CREATE TRIGGER RemoveAnimalGroupAndFeefing
             END IF;
 END;
 
+delete from Animal where fk_AnimalGroupId = 1 AND AnimalId = 1
+
 
 
