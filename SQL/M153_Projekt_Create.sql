@@ -17,7 +17,7 @@ CREATE TABLE Feed(
 CREATE TABLE AnimalGroup(
     AnimalGroupId int primary key  auto_increment,
     fk_EnclosureId int,
-    `Name` varchar(255),
+    `name` varchar(255),
     FOREIGN KEY (fk_EnclosureId) REFERENCES Enclosures (EnclosureId)
 );
 
@@ -26,6 +26,7 @@ CREATE TABLE Animal(
     fk_AnimalGroupId int,
     `name` varchar(255),
     Birthday date,
+    Size float,
     FOREIGN KEY (fk_AnimalGroupId) REFERENCES AnimalGroup (AnimalGroupId)
 );
 
