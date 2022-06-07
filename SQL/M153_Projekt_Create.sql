@@ -79,5 +79,7 @@ CREATE TRIGGER RemoveEnclosuresIfNotUsed
             end if;
         end;
 
-
-
+CREATE PROCEDURE GetAge(IN Birthday DATE, OUT Age INT)
+    BEGIN
+        SELECT (datediff(CURDATE(),Birthday)/365) into Age;
+    END;

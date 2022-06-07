@@ -21,7 +21,7 @@ VALUES
 
 INSERT INTO Animal (fk_AnimalGroupId, name, Size, Birthday)
 VALUES
-(1,'Coco', 0.85,CURDATE()),
+(1,'Coco', 0.85,'2010-06-07'),
 (1,'Manfred', 1.04,CURDATE()),
 (2,'Yolo', 5.47,CURDATE()),
 (3,'Jojo', 1.92, CURDATE()),
