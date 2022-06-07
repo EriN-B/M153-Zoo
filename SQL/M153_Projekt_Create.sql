@@ -60,6 +60,7 @@ CREATE TRIGGER CheckBirthday
             END IF;
         END;
 
+/*If last animal in animal-group is removed, whole animal-group + feeding of animal gets deleted*/
 CREATE TRIGGER RemoveAnimalGroupAndFeeding
     AFTER DELETE ON Animal
     FOR EACH ROW
@@ -70,6 +71,7 @@ CREATE TRIGGER RemoveAnimalGroupAndFeeding
             END IF;
 END;
 
+/* If in enclosure is no animal-group, Enclosure gets deleted*/
 CREATE TRIGGER RemoveEnclosuresIfNotUsed
     AFTER DELETE ON AnimalGroup
     FOR EACH ROW
@@ -82,4 +84,9 @@ CREATE TRIGGER RemoveEnclosuresIfNotUsed
 CREATE PROCEDURE GetAge(IN Birthday DATE, OUT Age INT)
     BEGIN
         SELECT (datediff(CURDATE(),Birthday)/365) into Age;
+    END;
+
+CREATE PROCEDURE GetAnimalsWithSizeInCentimeters(IN Size FLOAT, OUT SizeInCentimeters INT)
+    BEGIN
+        SELECT FLOOR(Size * 100) into SizeInCentimeters;
     END;
