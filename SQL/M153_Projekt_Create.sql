@@ -44,7 +44,7 @@ CREATE TABLE Feeding(
 
 
 CREATE TABLE Properties(
-    AnimalId int,
+    AnimalGroupId int,
     Description varchar(255)
 );
 
@@ -69,7 +69,7 @@ CREATE TRIGGER RemoveAnimalGroupAndFeeding
                 DELETE FROM Feeding WHERE Feeding.fk_AnimalGroupId = OLD.fk_AnimalGroupId;
                 DELETE FROM AnimalGroup WHERE AnimalGroup.AnimalGroupId = OLD.fk_AnimalGroupId;
             END IF;
-END;
+        END;
 
 /* If in enclosure is no animal-group, Enclosure gets deleted*/
 CREATE TRIGGER RemoveEnclosuresIfNotUsed
