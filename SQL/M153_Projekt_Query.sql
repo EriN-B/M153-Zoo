@@ -75,4 +75,3 @@ SELECT * FROM Animal WHERE name = 'Hansu';
 INSERT INTO Animal(fk_AnimalGroupId, name, Birthday, Size)
 VALUES(6, 'Hansu', '2021-06-09', 1.42);
 SELECT * FROM Animal WHERE name = 'Hansu';
-

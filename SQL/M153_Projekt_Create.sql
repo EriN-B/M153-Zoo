@@ -51,16 +51,18 @@ CREATE TABLE Properties(
 
 
 /* If the birthday date lays in the future, change it to Today's date*/
-CREATE TRIGGER CheckBirthday
-    BEFORE INSERT ON Animal
-    for each row
-        BEGIN
-            IF (NEW.Birthday > CURDATE()) THEN
-                SET NEW.Birthday = CURDATE();
-            END IF;
-        END;
+DELIMITER //
+CREATE TRIGGER CheckBirthday BEFORE INSERT ON Animal
+    FOR EACH ROW
+    BEGIN
+    	IF NEW.Birthday > CURDATE() THEN
+        	SET NEW.Birthday = CURDATE();
+        END IF;
+    END;//
+DELIMITER ;
 
 /*If last animal in animal-group is removed, whole animal-group + feeding of animal gets deleted*/
+DELIMITER //
 CREATE TRIGGER RemoveAnimalGroupAndFeeding
     AFTER DELETE ON Animal
     FOR EACH ROW
@@ -69,24 +71,32 @@ CREATE TRIGGER RemoveAnimalGroupAndFeeding
                 DELETE FROM Feeding WHERE Feeding.fk_AnimalGroupId = OLD.fk_AnimalGroupId;
                 DELETE FROM AnimalGroup WHERE AnimalGroup.AnimalGroupId = OLD.fk_AnimalGroupId;
             END IF;
-        END;
+        END;//
+DELIMITER ;
 
 /* If in enclosure is no animal-group, Enclosure gets deleted*/
+DELIMITER //
 CREATE TRIGGER RemoveEnclosuresIfNotUsed
     AFTER DELETE ON AnimalGroup
     FOR EACH ROW
         BEGIN
             IF (select count(AnimalGroupId) from AnimalGroup where fk_EnclosureId = OLD.fk_EnclosureId) = 0 THEN
                 DELETE FROM Enclosures WHERE Enclosures.EnclosureId = OLD.fk_EnclosureId;
-            end if;
-        end;
+            END IF;
+        END;//
+DELIMITER ;
 
+DELIMITER //
 CREATE PROCEDURE GetAge(IN Birthday DATE, OUT Age INT)
     BEGIN
         SELECT (datediff(CURDATE(),Birthday)/365) into Age;
-    END;
+    END;//
+DELIMITER ;
+
+DELIMITER //
 
 CREATE PROCEDURE GetAnimalsWithSizeInCentimeters(IN Size FLOAT, OUT SizeInCentimeters INT)
     BEGIN
         SELECT FLOOR(Size * 100) into SizeInCentimeters;
-    END;
+    END;//
+DELIMITER ;
